@@ -23,7 +23,7 @@ jobs:
         result-bundle-path: 'TestResults/TestResults.xcresult'
 
     - name: Process Test Results
-        uses: kishikawakatsumi/xcresulttool@v1
-        with:
-          path: TestResults/TestResults.xcresult
-        if: success() || failure()
+      uses: kishikawakatsumi/xcresulttool@v1
+      with:
+        path: TestResults/TestResults.xcresult
+      if: success() || failure()
