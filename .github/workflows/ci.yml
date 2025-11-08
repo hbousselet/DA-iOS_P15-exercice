@@ -4,21 +4,16 @@ on:
     branches:
       - main
 jobs:
-  build-and-test:
-    runs-on: macos-latest
+  test:
+    runs-on: macos-11
+    name: Test
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Build and Test
-        uses: sersoft-gmbh/xcodebuild-action@v3.2.0
+      - uses: actions/checkout@v2
+      - name: Test
+        run: |
+          xcodebuild -scheme EPCollaboratif -resultBundlePath TestResults test
+
+      - uses: kishikawakatsumi/xcresulttool@v1
         with:
-          project: EPCollaboratif.xcodeproj
-          scheme: EPCollaboratif
-          destination: 'platform=iOS Simulator,name=iPhone 16'
-          action: test
-          result-bundle-path: 'TestResults/TestResults.xcresult'
-      - name: Process Test Results
-        uses: kishikawakatsumi/xcresulttool@v1
-        with:
-          path: TestResults/TestResults.xcresult
+          path: TestResults.xcresult
         if: success() || failure()
