@@ -24,7 +24,7 @@ jobs:
       - name: List files (Debug)
         run: |
           echo "Listing TestResults directory:"
-          ls -la TestResults/ || echo "TestResults directory not found"
+          ls -laR TestResults/ || echo "TestResults directory not found"
           echo "Current directory content:"
           ls -la
         if: always()
