@@ -21,6 +21,13 @@ jobs:
           destination: 'platform=iOS Simulator,name=iPhone 16'
           action: test
           result-bundle-path: 'TestResults/TestResults.xcresult'
+      - name: List files (Debug)
+        run: |
+          echo "Listing TestResults directory:"
+          ls -la TestResults/ || echo "TestResults directory not found"
+          echo "Current directory content:"
+          ls -la
+        if: always()
           
       - name: Process Test Results
         uses: kishikawakatsumi/xcresulttool@v1
