@@ -6,21 +6,22 @@ on:
 jobs:
   test:
     runs-on: macos-latest
-    
+
     steps:
-      - uses: actions/checkout@v2
-      
+      - uses: actions/checkout@v4
+      - name: Install xcbeautify
+        run: |
+          brew install xcbeautify
       - name: Test
         run: |
           xcodebuild test \
             -scheme EPCollaboratif \
-            -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.4' \
-            -resultBundlePath TestResults \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.2' \
+            -resultBundlePath TestResults.xcresult \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO
-            
-      - uses: kishikawakatsumi/xcresulttool@v1
+      - uses: kishikawakatsumi/xcresulttool@v1.2.0
         with:
           path: TestResults.xcresult
         if: success() || failure()
