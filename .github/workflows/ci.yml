@@ -21,8 +21,12 @@ jobs:
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO
-      - uses: yeosu0107/xcresulttool-test-results@v1
+      - name: List files after test
+        run: ls -la
+      - uses: kishikawakatsumi/xcresulttool@v2
         with:
-          xcresult-path: TestResults.xcresult
+          path: TestResults.xcresult
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: Xcode test results
           output-md: test-summary.md
         if: success() || failure()
