@@ -23,7 +23,7 @@ jobs:
             CODE_SIGNING_ALLOWED=NO
       - name: List files after test
         run: ls -la
-      - uses: kishikawakatsumi/xcresulttool@v2
+      - uses: kishikawakatsumi/xcresulttool@v1
         with:
           path: TestResults.xcresult
           token: ${{ secrets.GITHUB_TOKEN }}
